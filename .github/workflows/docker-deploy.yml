@@ -15,6 +15,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      env:
+        DOCKER_CLI_EXPERIMENTAL: enabled
+      uses: crazy-max/ghaction-setup-docker@v2
+      with:
+        version: v24.0.6
+        daemon-config: |
+          {
+            "features": {
+              "containerd-snapshotter": true
+            }
+          }
+    
     - name: Checkout code
       uses: actions/checkout@v4
 
@@ -36,8 +48,7 @@ jobs:
           -c Release \
           -p:PublishProfile=DefaultContainer \
           -p:ContainerRepository=$REGISTRY/$IMAGE_PREFIX-api \
-          -p:ContainerImageTag=latest \
-          -p:ContainerRegistryUseContainerd=false
+          -p:ContainerImageTag=latest
 
     - name: Build and push Website docker image
       run: |
