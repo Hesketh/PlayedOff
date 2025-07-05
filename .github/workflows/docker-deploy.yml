@@ -48,7 +48,9 @@ jobs:
           -c Release \
           -p:PublishProfile=DefaultContainer \
           -p:ContainerRepository=$REGISTRY/$IMAGE_PREFIX-api \
-          -p:ContainerImageTag=latest
+          -p:ContainerImageTag=latest \
+          -p:ContainerRegistry=$REGISTRY \
+          -P:PublishContainer=true
 
     - name: Push API docker image
       run: |
