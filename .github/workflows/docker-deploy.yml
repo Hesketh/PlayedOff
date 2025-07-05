@@ -47,14 +47,10 @@ jobs:
         dotnet publish PlayedOff.Api/PlayedOff.Api.csproj \
           -c Release \
           -p:PublishProfile=DefaultContainer \
-          -p:ContainerRepository=$REGISTRY/$IMAGE_PREFIX-api \
+          -p:ContainerRepository=$IMAGE_PREFIX-api \
           -p:ContainerImageTag=latest \
           -p:ContainerRegistry=$REGISTRY \
           -P:PublishContainer=true
-
-    - name: Push API docker image
-      run: |
-        docker push $REGISTRY/$IMAGE_PREFIX-api:latest
 
     - name: Build and push Website docker image
       run: |
