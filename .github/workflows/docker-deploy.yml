@@ -42,13 +42,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Build and push API docker image
+    - name: Build API docker image
       run: |
         dotnet publish PlayedOff.Api/PlayedOff.Api.csproj \
           -c Release \
           -p:PublishProfile=DefaultContainer \
           -p:ContainerRepository=$REGISTRY/$IMAGE_PREFIX-api \
           -p:ContainerImageTag=latest
+
+    - name: Push API docker image
+      run: |
+        docker push $REGISTRY/$IMAGE_PREFIX-api:latest
 
     - name: Build and push Website docker image
       run: |
