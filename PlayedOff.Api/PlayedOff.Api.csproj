@@ -4,7 +4,7 @@
 		<TargetFramework>$(TargetNetVersion)</TargetFramework>
 		<RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
 		<EnableSdkContainerDebugging>True</EnableSdkContainerDebugging>
-		<ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:8.0</ContainerBaseImage>
+		<ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:9.0</ContainerBaseImage>
 		<UserSecretsId>888908cd-8ebf-42ae-9fdc-bbf4bcb06a91</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	</PropertyGroup>
