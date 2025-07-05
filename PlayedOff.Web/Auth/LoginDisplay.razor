@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+<div class="user-info">
+    <AuthorizeView>
+        <Authorized>
+            <button onclick="@BeginSignOut">@context.User.Identity!.Name</button>
+        </Authorized>
+        <NotAuthorized>
+            <button onclick="@BeginSignIn">Sign In</button>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>

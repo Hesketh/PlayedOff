@@ -1,5 +1,6 @@
 ﻿@page "/weather"
-@inject HttpClient Http
+@using PlayedOff.Api
+@using PlayedOff.Api.Client
 
 <PageTitle>Weather</PageTitle>
 
@@ -37,24 +38,12 @@ else
 }
 
 @code {
-    [Inject] public IConfiguration Configuration { get; set; } = null!;
+    [Inject] public WeatherForecastClient Client { get; set; } = null!;
 
     private WeatherForecast[]? forecasts;
 
     protected override async Task OnParametersSetAsync()
     {
-        var url = Configuration["api"] + "/WeatherForecast";
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>(url);
-    }
-
-    public class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        forecasts = await Client.GetAsync();
     }
 }

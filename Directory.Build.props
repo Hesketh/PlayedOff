@@ -1,0 +1,10 @@
+<Project>
+	<PropertyGroup>
+		<TargetNetVersion>net9.0</TargetNetVersion>
+		<TargetAspireSdkVersion>9.0.0</TargetAspireSdkVersion>
+		
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>preview</LangVersion>
+	</PropertyGroup>
+</Project>
