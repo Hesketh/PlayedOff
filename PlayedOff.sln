@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayedOff.Api.Client", "Pla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayedOff.Domain.Dto", "PlayedOff.Domain.Dto\PlayedOff.Domain.Dto.csproj", "{CA125C14-A53E-4813-9846-81133129B63F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayedOff.Domain", "PlayedOff.Domain\PlayedOff.Domain.csproj", "{25F9DFC8-34CE-439F-8973-C6C0660B2324}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayedOff.DataAccess", "PlayedOff.DataAccess\PlayedOff.DataAccess.csproj", "{DF0BADD3-3C30-434A-ADC2-01BA51B52AFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,14 @@ Global
 		{CA125C14-A53E-4813-9846-81133129B63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA125C14-A53E-4813-9846-81133129B63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA125C14-A53E-4813-9846-81133129B63F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25F9DFC8-34CE-439F-8973-C6C0660B2324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25F9DFC8-34CE-439F-8973-C6C0660B2324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25F9DFC8-34CE-439F-8973-C6C0660B2324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25F9DFC8-34CE-439F-8973-C6C0660B2324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF0BADD3-3C30-434A-ADC2-01BA51B52AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF0BADD3-3C30-434A-ADC2-01BA51B52AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF0BADD3-3C30-434A-ADC2-01BA51B52AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF0BADD3-3C30-434A-ADC2-01BA51B52AFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

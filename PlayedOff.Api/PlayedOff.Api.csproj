@@ -24,6 +24,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\PlayedOff.Domain.Dto\PlayedOff.Domain.Dto.csproj" />
+		<ProjectReference Include="..\PlayedOff.Domain\PlayedOff.Domain.csproj" />
 		<ProjectReference Include="..\PlayedOff.ServiceDefaults\PlayedOff.ServiceDefaults.csproj" />
 	</ItemGroup>
 

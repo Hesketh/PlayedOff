@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using PlayedOff.Api.Filters.Operation;
+using PlayedOff.Domain.Extensions;
+using PlayedOff.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,8 @@ builder.Services.AddControllers()
     .AddJsonOptions(opts => opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddPlayedOffServices();
 
 var adOptionsKey = "AzureAd";
 var adOptions = new MicrosoftIdentityOptions();
