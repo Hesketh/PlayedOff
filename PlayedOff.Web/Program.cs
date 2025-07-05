@@ -10,7 +10,12 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddMsalAuthentication(options
-    => builder.Configuration.Bind("ProviderOptions", options.ProviderOptions));
+    =>
+{
+    builder.Configuration.Bind("ProviderOptions", options.ProviderOptions);
+    options.ProviderOptions.Cache.StoreAuthStateInCookie = true;
+    options.ProviderOptions.Cache.CacheLocation = "localStorage";
+});
 
 builder.Services.AddPlayedOffApiClients<BearerTokenHttpMessageHandler>(
     new Uri(builder.Configuration["Api"] ?? throw new InvalidOperationException("No Api url specified")));
