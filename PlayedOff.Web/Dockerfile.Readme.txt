@@ -1,0 +1,4 @@
+The build context must be the solution root directory, not the project directory.
+Therefore if you are running this locally ensure the working directory is the solution root.
+
+docker build -t playedoff-web:latest -f PlayedOff.Web/Dockerfile .

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
 	<PropertyGroup>
 		<TargetFramework>$(TargetNetVersion)</TargetFramework>
@@ -18,6 +18,12 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\PlayedOff.Api.Client\PlayedOff.Api.Client.csproj" />
 	  <ProjectReference Include="..\PlayedOff.Domain.Dto\PlayedOff.Domain.Dto.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="nginx.conf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
