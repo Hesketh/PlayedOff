@@ -9,14 +9,14 @@ on:
 env:
   REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
   IMAGE_PREFIX: playedoff
+  DOCKER_CLI_EXPERIMENTAL: enabled
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      env:
-        DOCKER_CLI_EXPERIMENTAL: enabled
+    - name: Set up Docker
       uses: crazy-max/ghaction-setup-docker@v2
       with:
         version: v24.0.6
@@ -26,9 +26,6 @@ jobs:
               "containerd-snapshotter": true
             }
           }
-    
-    - name: Checkout code
-      uses: actions/checkout@v4
 
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
@@ -41,6 +38,9 @@ jobs:
         registry: ${{ secrets.DOCKER_REGISTRY }}
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Build and push API docker image
       run: |
