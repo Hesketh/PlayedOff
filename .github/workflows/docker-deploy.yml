@@ -2,9 +2,9 @@ name: Build and Deploy Docker Containers
 
 on:
   push:
-    branches: [ master ]
+    branches: [ '*' ]
   pull_request:
-    branches: [ master ]
+    branches: [ '*' ]
 
 env:
   REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
@@ -42,17 +42,28 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Set Docker image tag
+      id: set_tag
+      run: |
+        if [ "${GITHUB_REF##*/}" = "master" ]; then
+          echo "TAG=latest" >> $GITHUB_ENV
+        else
+          # Sanitize branch name for Docker tag
+          BRANCH_TAG=$(echo "${GITHUB_REF##*/}" | tr '/' '-' | tr -cd '[:alnum:]-')
+          echo "TAG=$BRANCH_TAG" >> $GITHUB_ENV
+        fi
+
     - name: Build API docker image
       run: |
         dotnet publish PlayedOff.Api/PlayedOff.Api.csproj \
           -c Release \
           -p:PublishProfile=DefaultContainer \
           -p:ContainerRepository=$IMAGE_PREFIX-api \
-          -p:ContainerImageTag=latest \
+          -p:ContainerImageTag=${TAG} \
           -p:ContainerRegistry=$REGISTRY \
           -P:PublishContainer=true
 
     - name: Build and push Website docker image
       run: |
-        docker build -t $REGISTRY/$IMAGE_PREFIX-web:latest -f PlayedOff.Web/Dockerfile .
-        docker push $REGISTRY/$IMAGE_PREFIX-web:latest
+        docker build -t $REGISTRY/$IMAGE_PREFIX-web:${TAG} -f PlayedOff.Web/Dockerfile .
+        docker push $REGISTRY/$IMAGE_PREFIX-web:${TAG}
