@@ -6,7 +6,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddPlayedOffApiClients<T>(this IServiceCollection serviceCollection, Uri uri) where T : DelegatingHandler
     {
-        serviceCollection.AddHttpClient<WeatherForecastClient, WeatherForecastClient>(x => x.BaseAddress = uri)
+        serviceCollection.AddHttpClient<IProfileClient, ProfileClient>(x => x.BaseAddress = uri)
             .AddHttpMessageHandler<T>();
 
         serviceCollection.AddTransient<T>();

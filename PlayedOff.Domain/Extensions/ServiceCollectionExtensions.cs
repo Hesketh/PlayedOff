@@ -5,7 +5,7 @@ namespace PlayedOff.Domain.Extensions;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddPlayedOffServices(this IServiceCollection serviceCollection) where T : DelegatingHandler
+    public static IServiceCollection AddPlayedOffServices(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddTransient<IUserService, UserService>();
 
