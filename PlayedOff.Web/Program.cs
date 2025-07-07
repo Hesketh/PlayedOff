@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 using PlayedOff.Api.Client.Extensions;
 using PlayedOff.Web;
 using PlayedOff.Web.Handlers;
@@ -21,5 +22,7 @@ builder.Services.AddPlayedOffApiClients<BearerTokenHttpMessageHandler>(
     new Uri(builder.Configuration["Api"] ?? throw new InvalidOperationException("No Api url specified")));
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+builder.Services.AddMudServices();
 
 await builder.Build().RunAsync();
