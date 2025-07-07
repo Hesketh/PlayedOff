@@ -3,10 +3,37 @@
 <div class="user-info">
     <AuthorizeView>
         <Authorized>
-            <button onclick="@BeginSignOut">@context.User.Identity!.Name</button>
+            @* <MudAvatar Color="Color.Primary">@GetInitials(context.User.Identity?.Name)</MudAvatar> *@
+            @* <button onclick="@BeginSignOut">@context.User.Identity!.Name</button> *@
+            
+            <MudMenu AnchorOrigin="Origin.TopRight">
+                <ActivatorContent>
+                    <MudAvatar Color="Color.Primary" Style="cursor:pointer;">
+                        @GetInitials(context.User.Identity?.Name)
+                    </MudAvatar>
+                </ActivatorContent>
+                <ChildContent>
+                    <MudMenuItem>Profile</MudMenuItem>
+                    <MudMenuItem OnClick="BeginSignOut">Sign out</MudMenuItem>
+                </ChildContent>
+            </MudMenu>
         </Authorized>
         <NotAuthorized>
             <button onclick="@BeginSignIn">Sign In</button>
         </NotAuthorized>
     </AuthorizeView>
 </div>
+
+@code
+{
+    private string GetInitials(string? name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return string.Empty;
+
+        return string.Join(string.Empty, name.Split(' ')
+            .Where(part => !string.IsNullOrEmpty(part))
+            .Select(part => part[0].ToString().ToUpperInvariant())
+            .Take(2));
+    }
+}
