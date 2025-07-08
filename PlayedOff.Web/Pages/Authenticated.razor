@@ -1,9 +1,8 @@
-﻿@page "/weather"
-@using PlayedOff.Api
+﻿@page "/authenticated"
 @using PlayedOff.Api.Client
 @using PlayedOff.Domain.Dto
 
-<PageTitle>Weather</PageTitle>
+<p>This page should only be accessible as an authenticated user</p>
 
 @if (user != null)
 {

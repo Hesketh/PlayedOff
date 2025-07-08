@@ -2,19 +2,28 @@
 @using PlayedOff.Web.Auth;
 @using PlayedOff.Web.Branding
 
-<MudThemeProvider Theme="@Theming.Theme"/>
+<MudThemeProvider @bind-IsDarkMode="DarkMode" Theme="@Theming.Theme"/>
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudToggleIconButton @bind-Toggled="DrawerOpen"
+                             Icon="@Icons.Material.Filled.Menu"
+                             ToggledIcon="@Icons.Material.Filled.MenuOpen"
+                             Color="Color.Inherit"
+                             ToggledColor="Color.Inherit"/>
         <MudText Typo="Typo.h5" Class="ml-3">Played Off</MudText>
-        <MudSpacer />
+        <MudSpacer/>
+        <MudToggleIconButton @bind-Toggled="DarkMode"
+                             Icon="@Icons.Material.Filled.LightMode"
+                             ToggledIcon="@Icons.Material.Filled.DarkMode"
+                             Color="Color.Inherit"
+                             ToggledColor="Color.Inherit"/>
         <LoginDisplay/>
     </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+    <MudDrawer @bind-Open="DrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
     </MudDrawer>
     <MudMainContent>
@@ -23,10 +32,6 @@
 </MudLayout>
 
 @code {
-    bool _drawerOpen = true;
-
-    void DrawerToggle()
-    {
-        _drawerOpen = !_drawerOpen;
-    }
+    public bool DarkMode { get; set; }
+    public bool DrawerOpen { get; set; }
 }

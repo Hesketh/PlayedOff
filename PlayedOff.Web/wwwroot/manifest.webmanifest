@@ -1,22 +1,18 @@
 {
-  "name": "PlayedOff.Web",
-  "short_name": "PlayedOff.Web",
+  "name": "Played Off",
+  "short_name": "Played Off",
   "id": "./",
   "start_url": "./",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#03173d",
   "prefer_related_applications": false,
   "icons": [
-    {
-      "src": "icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    },
-    {
-      "src": "icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    }
+	{
+		"src": "logo.svg",
+		"sizes": "any",
+		"type": "image/svg+xml",
+		"purpose": "any"
+	}
   ]
+  "theme_color": "#f6ab42",
+  "background_color": "#F2F3F4",
+  "display": "standalone"
 }
