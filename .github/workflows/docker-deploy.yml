@@ -65,7 +65,7 @@ jobs:
     - name: Set Docker image tag
       id: set_tag
       run: |
-        if [ "${GITHUB_REF##*/}" = "master" ]; then
+        if [ "${GITHUB_REF##*/}" = "main" ]; then
           echo "TAG=latest" >> $GITHUB_ENV
         else
           # Sanitize branch name for Docker tag
