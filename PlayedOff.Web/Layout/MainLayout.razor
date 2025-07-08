@@ -2,7 +2,7 @@
 @using PlayedOff.Web.Auth;
 @using PlayedOff.Web.Branding
 
-<MudThemeProvider @bind-IsDarkMode="DarkMode" Theme="@Theming.Theme"/>
+<MudThemeProvider @ref="_mudThemeProvider" @bind-IsDarkMode="DarkMode" Theme="@Theming.Theme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -14,24 +14,16 @@
                              ToggledIcon="@Icons.Material.Filled.MenuOpen"
                              Color="Color.Inherit"
                              ToggledColor="Color.Inherit"/>
-        <MudText Typo="Typo.h5" Class="ml-3">Played Off</MudText>
+        <MudSpacer />
+        <MudImage Src="logo.svg" Alt="Mascot" Style="height:75%"></MudImage>
+        <MudText Typo="Typo.h3" Class="ml-4">PLAYED OFF</MudText>
         <MudSpacer/>
-        <MudToggleIconButton @bind-Toggled="DarkMode"
-                             Icon="@Icons.Material.Filled.LightMode"
-                             ToggledIcon="@Icons.Material.Filled.DarkMode"
-                             Color="Color.Inherit"
-                             ToggledColor="Color.Inherit"/>
         <LoginDisplay/>
     </MudAppBar>
     <MudDrawer @bind-Open="DrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
     </MudDrawer>
-    <MudMainContent>
+    <MudMainContent Class="mt-8 px-8">
         @Body
     </MudMainContent>
 </MudLayout>
-
-@code {
-    public bool DarkMode { get; set; }
-    public bool DrawerOpen { get; set; }
-}

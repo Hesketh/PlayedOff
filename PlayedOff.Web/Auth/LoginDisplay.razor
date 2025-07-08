@@ -3,12 +3,9 @@
 <div class="user-info">
     <AuthorizeView>
         <Authorized>
-            @* <MudAvatar Color="Color.Primary">@GetInitials(context.User.Identity?.Name)</MudAvatar> *@
-            @* <button onclick="@BeginSignOut">@context.User.Identity!.Name</button> *@
-            
             <MudMenu AnchorOrigin="Origin.TopRight">
                 <ActivatorContent>
-                    <MudAvatar Color="Color.Primary" Style="cursor:pointer;">
+                    <MudAvatar Color="Color.Primary" Size="Size.Medium" Style="cursor:pointer;">
                         @GetInitials(context.User.Identity?.Name)
                     </MudAvatar>
                 </ActivatorContent>

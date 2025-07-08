@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Played Off" />
     <link href="PlayedOff.Web.styles.css" rel="stylesheet" />
+    <link href="loading-screen.styles.css" rel="stylesheet" />
     <link href="manifest.webmanifest" rel="manifest" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- Important: Increment the version parameter whenever you update MudBlazor to prevent caching issues -->
@@ -20,11 +21,13 @@
 
 <body>
     <div id="app">
-        <div style="position:absolute; top:30vh; width:100%; text-align:center">
-            <h1>Played Off</h1>
-            <div style="display:flex; gap:10px; justify-content:center; align-items:center">
-                <div class="spinner-border" role="status"></div>
-                loading...
+        <div id="loading-screen">
+            <div class="loader-content">
+                <img src="logo.svg" alt="Mascot" class="loader-icon" />
+                <div class="loader-text-block">
+                    <div class="loader-logo">PLAYED OFF</div>
+                    <div class="loader-text">Setting up the table...</div>
+                </div>
             </div>
         </div>
     </div>
