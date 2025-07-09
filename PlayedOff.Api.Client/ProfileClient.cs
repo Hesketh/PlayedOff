@@ -2,13 +2,18 @@
 
 namespace PlayedOff.Api.Client;
 
-public interface IProfileClient
+public interface IUserProfileClient
 {
-    Task<User> GetAsync();
+    Task<UserProfile> GetAsync();
 }
 
-public sealed class ProfileClient(HttpClient httpClient) : Client(httpClient), IProfileClient
+public sealed class UserProfileClient(HttpClient httpClient) : Client(httpClient), IUserProfileClient
 {
-    public async Task<User> GetAsync()
-        => await GetAsync<User>($"profile");
+    private const string Route = "userProfile";
+
+    public async Task<UserProfile> GetAsync()
+        => await GetAsync<UserProfile>(Route);
+
+    public async Task<UserProfile> CreateAsync(UserProfileCreateRequest createRequest)
+        => await CreateAsync<UserProfileCreateRequest, UserProfile>(Route, createRequest);
 }

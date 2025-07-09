@@ -1,10 +1,13 @@
-using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
+using PlayedOff.Api.Extensions;
 using PlayedOff.Api.Filters.Operation;
+using PlayedOff.DataAccess.Extensions;
 using PlayedOff.Domain.Extensions;
 using PlayedOff.ServiceDefaults;
+using System.Text.Json.Serialization;
+using PlayedOff.Api.Filters.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +15,19 @@ builder.AddServiceDefaults();
 builder.AddRedisDistributedCache(connectionName: "cache");
 
 builder.Services.AddProblemDetails();
-builder.Services.AddControllers()
+builder.Services.AddControllers(opts =>
+    {
+        opts.Filters.Add<EntityCreateFailedExceptionFilter>();
+        opts.Filters.Add<EntityNotFoundExceptionFilter>();
+        opts.Filters.Add<UserForbiddenExceptionFilter>();
+    })
     .AddJsonOptions(opts => opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddPlayedOffServices();
+builder.Services.AddPlayedOffDataAccess();
+builder.Services.AddPlayedOffExceptionFilters();
 
 var adOptionsKey = "AzureAd";
 var adOptions = new MicrosoftIdentityOptions();

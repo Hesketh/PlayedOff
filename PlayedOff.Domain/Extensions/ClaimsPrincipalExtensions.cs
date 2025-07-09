@@ -1,24 +1,27 @@
 ﻿using System.Security.Claims;
-using Microsoft.Identity.Web;
 
-namespace PlayedOff.Api.Extensions
+namespace PlayedOff.Domain.Extensions
 {
     public static class ClaimsPrincipalExtensions
     {
-        public static Guid GetMsalId(this ClaimsPrincipal claimsPrincipal)
+        private const string ObjectId = "http://schemas.microsoft.com/identity/claims/objectidentifier";
+        private const string Oid = "oid";
+        private const string Sub = "sub";
+
+        public static Guid GetAzureOid(this ClaimsPrincipal claimsPrincipal)
         {
             if (claimsPrincipal == null)
                 throw new ArgumentNullException(nameof(claimsPrincipal));
             
-            var objectId = claimsPrincipal.FindFirstValue(ClaimConstants.ObjectId);
+            var objectId = claimsPrincipal.FindFirst(ObjectId)?.Value;
             if (objectId != null)
                 return Guid.Parse(objectId);
 
-            var oid = claimsPrincipal.FindFirstValue(ClaimConstants.Oid);
+            var oid = claimsPrincipal.FindFirst(Oid)?.Value;
             if (oid != null)
                 return Guid.Parse(oid);
 
-            var sub = claimsPrincipal.FindFirstValue(ClaimConstants.Sub);
+            var sub = claimsPrincipal.FindFirst(Sub)?.Value;
             if (sub != null)
                 return Guid.Parse(sub);
 

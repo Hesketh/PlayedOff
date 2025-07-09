@@ -7,7 +7,10 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddPlayedOffServices(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddTransient<IUserService, UserService>();
+        serviceCollection.AddHttpContextAccessor();
+
+        serviceCollection.AddTransient<ICurrentUserProvider, CurrentUserProvider>();
+        serviceCollection.AddTransient<IUserProfileService, UserProfileService>();
 
         return serviceCollection;
     }

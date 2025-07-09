@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace PlayedOff.Api.Extensions;
+namespace PlayedOff.Domain.Extensions;
 
 public static class DistributedCacheExtensions
 {

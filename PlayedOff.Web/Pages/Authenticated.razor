@@ -12,13 +12,13 @@
 
 @code {
     [Inject] public AuthenticationStateProvider AuthenticationStateProvider { get; set; } = null!;
-    [Inject] public IProfileClient ProfileClient { get; set; } = null!;
+    [Inject] public IUserProfileClient UserProfileClient { get; set; } = null!;
 
-    private User? user = null;
+    private UserProfile? user = null;
 
     protected override async Task OnParametersSetAsync()
     {
-        user = await ProfileClient.GetAsync();
+        user = await UserProfileClient.GetAsync();
 
         // oid is the claim we want for a unique identifier
         var x = await AuthenticationStateProvider.GetAuthenticationStateAsync();
