@@ -1,25 +1,23 @@
-﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
-<div class="user-info">
-    <AuthorizeView>
-        <Authorized>
-            <MudMenu AnchorOrigin="Origin.TopRight">
-                <ActivatorContent>
-                    <MudAvatar Color="Color.Primary" Size="Size.Medium" Style="cursor:pointer;">
-                        @GetInitials(context.User.Identity?.Name)
-                    </MudAvatar>
-                </ActivatorContent>
-                <ChildContent>
-                    <MudMenuItem>Profile</MudMenuItem>
-                    <MudMenuItem OnClick="BeginSignOut">Sign out</MudMenuItem>
-                </ChildContent>
-            </MudMenu>
-        </Authorized>
-        <NotAuthorized>
-            <button onclick="@BeginSignIn">Sign In</button>
-        </NotAuthorized>
-    </AuthorizeView>
-</div>
+﻿<AuthorizeView>
+    <Authorized>
+        <MudMenu AnchorOrigin="Origin.TopRight">
+            <ActivatorContent>
+                <MudAvatar Color="Color.Primary"
+                           Size="Size.Medium"
+                           Style="cursor:pointer;">
+                    @GetInitials(context.User.Identity?.Name)
+                </MudAvatar>
+            </ActivatorContent>
+            <ChildContent>
+                <MudMenuItem>Profile</MudMenuItem>
+                <MudMenuItem OnClick="BeginSignOut">Sign out</MudMenuItem>
+            </ChildContent>
+        </MudMenu>
+    </Authorized>
+    <NotAuthorized>
+        <MudIconButton OnClick="BeginSignIn" Icon="@Icons.Material.Filled.Login"/>
+    </NotAuthorized>
+</AuthorizeView>
 
 @code
 {
