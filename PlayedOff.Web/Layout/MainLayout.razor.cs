@@ -1,13 +1,15 @@
-﻿using MudBlazor;
+﻿using Microsoft.AspNetCore.Components.Web;
+using MudBlazor;
 
 namespace PlayedOff.Web.Layout
 {
     public partial class MainLayout
     {
+        private MudThemeProvider _mudThemeProvider = null!;
+        private ErrorBoundary _errorBoundary = null!;
+
         public bool DarkMode { get; set; }
         public bool DrawerOpen { get; set; }
-
-        private MudThemeProvider _mudThemeProvider = null!;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -24,6 +26,11 @@ namespace PlayedOff.Web.Layout
             DarkMode = newValue;
             StateHasChanged();
             return Task.CompletedTask;
+        }
+
+        private void RecoverErrorBoundary()
+        {
+            _errorBoundary.Recover();
         }
     }
 }
