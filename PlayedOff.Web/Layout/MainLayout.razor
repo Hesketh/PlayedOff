@@ -19,42 +19,14 @@
         <MudImage Src="logo.svg" Alt="Mascot" Style="height:75%"></MudImage>
         <MudText Typo="Typo.h3" Class="ml-4">PLAYED OFF</MudText>
         <MudSpacer/>
-        <UserAlerts/>
         <LoginDisplay/>
     </MudAppBar>
     <MudDrawer @bind-Open="DrawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
     </MudDrawer>
     <MudMainContent Class="mt-8 px-8">
-        <ErrorBoundary @ref="_errorBoundary">
-            <ChildContent>
-                @Body
-            </ChildContent>
-            <ErrorContent>
-                <MudGrid>
-                    <!-- SVG on the left -->
-                    <MudItem xs="12" sm="4">
-                        <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                            <img src="logo.svg" alt="Mascot" style="max-width: 100%; height: auto;" />
-                        </div>
-                    </MudItem>
-
-                    <!-- Message and Button on the right -->
-                    <MudItem xs="12" sm="8">
-                        <MudPaper Style="padding: 1rem;">
-                            <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                @* This isnt a good enough solution here as its a top level that wont ever recover *@
-                                @* Probably need to subclass ErrorBoundary and add some options like return home *@
-                                @* https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/handle-errors?view=aspnetcore-9.0 *@
-                                <MudText Typo="Typo.h6">An unexpected error occured</MudText>
-                                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@RecoverErrorBoundary">
-                                    Recover
-                                </MudButton>
-                            </div>
-                        </MudPaper>
-                    </MudItem>
-                </MudGrid>
-            </ErrorContent>
-        </ErrorBoundary>
+        <PageErrorBoundary>
+            @Body
+        </PageErrorBoundary>
     </MudMainContent>
 </MudLayout>

@@ -1,0 +1,42 @@
+﻿@inherits ErrorBoundary
+@inject NavigationManager NavigationManager
+
+@if (CurrentException is null)
+{
+    @ChildContent
+}
+else
+{
+    <MudStack AlignItems="AlignItems.Center" Justify="Justify.Center">
+        <MudText Typo="Typo.h3">Something went wrong...</MudText>
+
+        <MudImage Src="logo.svg" Alt="Mascot" Style="max-height:33%;max-width:50%"></MudImage>
+
+        <MudStack Row="true" AlignItems="AlignItems.Center" Justify="Justify.SpaceEvenly">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@Recover">
+                Retry
+            </MudButton>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@Refresh">
+                Refresh
+            </MudButton>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@Home">
+                Home
+            </MudButton>
+        </MudStack>
+    </MudStack>
+}
+
+@code
+{
+    private void Refresh()
+    {
+        NavigationManager.Refresh(true);
+    }
+
+    private void Home()
+    {
+        NavigationManager.NavigateTo("/",true);
+    }
+}

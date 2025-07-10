@@ -1,9 +1,25 @@
 ﻿@page "/authentication/{action}"
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using PlayedOff.Api.Client
 
-<RemoteAuthenticatorView Action="@Action" />
+<RemoteAuthenticatorView Action="@Action" OnLogInSucceeded="OnLogInSucceeded"/>
 
 @code
 {
     [Parameter] public string Action { get; set; } = null!;
+
+    [Inject] public IUserProfileClient UserProfileClient { get; set; } = null!;
+    [Inject] public NavigationManager Navigation { get; set; } = null!;
+
+    private async Task OnLogInSucceeded(RemoteAuthenticationState obj)
+    {
+        try
+        {
+            await UserProfileClient.GetAsync();
+        }
+        catch (Exception ex) when (ex.Message.Contains("The user has not completed their profile"))
+        {
+            Navigation.NavigateTo("onboarding", true, true);
+        }
+    }
 }
